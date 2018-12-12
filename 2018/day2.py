@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 with open('input/day2') as input:
 	vals = list(map(lambda x: x.strip(), input.readlines()))
 
