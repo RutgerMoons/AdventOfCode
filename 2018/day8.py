@@ -15,6 +15,18 @@ class Node:
 		result = "Metadata: [%s]" % ", ".join(map(str, self.metadata))
 		return result
 
+	def node_sum(self):
+		if not self.children:
+			return sum(self.metadata)
+
+		total = 0
+		for i in self.metadata:
+			idx = i - 1
+			if idx < 0 or idx >= len(self.children):
+				continue
+			total += self.children[idx].node_sum()
+		return total
+
 def parseValue(values):
 	idx, root = _parseValue(values, 0)
 	return root
@@ -53,3 +65,4 @@ total_metadata = sum_metadata(root)
 
 print("Part 1: %s" % total_metadata)
 
+print("Part 2: %s" % root.node_sum())
