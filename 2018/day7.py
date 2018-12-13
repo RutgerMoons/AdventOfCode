@@ -106,4 +106,4 @@ while len(vals) > 0:
 			del nodes[task_node.name]
 
 
-print("Part 1: %d" % total_time)
+print("Part 2: %d" % total_time)
