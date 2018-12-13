@@ -68,3 +68,25 @@ for cand in candidates:
 		m = area
 
 print("Part 1: %d" % m)
+
+manhattan_x, manhattan_y = [], []
+for i in range(max_x):
+	m = 0
+	for c in coords:
+		m += abs(c[0] - i)
+	manhattan_x.append(m)
+
+for i in range(max_y):
+	m = 0
+	for c in coords:
+		m += abs(c[1] - i)
+	manhattan_y.append(m)
+
+limit = 10000
+count = 0
+for i in range(max_x):
+	for j in range(max_y):
+		if manhattan_x[i] + manhattan_y[j] < limit:
+			count += 1
+
+print("Part 2: %d" % count)
