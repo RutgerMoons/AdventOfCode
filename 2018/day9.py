@@ -3,10 +3,12 @@
 players = 478
 scores = [0] * players
 
-limit = 71240
+limit = 7124000
 circle = [0, 1]
 current_idx = 1
 for i in range(2, limit + 1):
+	if i % 71240 == 0:
+		print("{}%".format(int((i * 100) / limit)))
 	if i % 23 == 0:
 		# add i to score
 		score = i
