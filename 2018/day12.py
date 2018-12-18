@@ -36,7 +36,7 @@ def plant_sum(plants, offset):
 with open('input/day12') as input:
 	lines = list(map(lambda x: x.strip(), input.readlines()))
 
-nb_generations = 20
+nb_generations = 200
 max_spread = 2
 plants = []
 init = lines[0].strip()
@@ -47,6 +47,7 @@ plants = buffer_left + string_to_plants(init) + buffer_right
 
 rules_str = lines[1:]
 rules = []
+rules.append(SpreadRule([False] * (max_spread * 2 + 1), False))
 for rule in rules_str:
 	sp = rule.strip().split(' => ')
 	state = string_to_plants(sp[0])
@@ -54,6 +55,16 @@ for rule in rules_str:
 	rules.append(SpreadRule(state, outcome))
 
 # Now do the simulation
-for i in range(nb_generations):
+sums = [plant_sum(plants, nb_left)]
+generation = 0
+while generation < nb_generations:
+	generation += 1
 	plants = simulate_all_plants(plants,rules,max_spread)
-print(plant_sum(plants, nb_left))
+	s = plant_sum(plants, nb_left)
+	print("Generation: {}. Growth: {}. Sum: {}".format(generation, s - sums[-1], s))
+	sums.append(s)
+
+# growth becomes constant (32) at generation 143.
+total = (5*(10**10) - 143) * 32 + 4977
+print(total)
+
