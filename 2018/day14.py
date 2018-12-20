@@ -1,11 +1,11 @@
 #! /usr/bin/env python3
 
 elfs = [0, 1]
-nb_recipes = 919901
+nb_recipes = "919901"
 extra_scores = 10
 extra_safety = 5 * len(elfs)
 
-scores = [0] * (nb_recipes + extra_scores + extra_safety)
+scores = [0] * (10**8 + extra_scores + extra_safety)
 scores[0] = 3
 scores[1] = 7
 nb_scores = 2
@@ -38,7 +38,17 @@ def step(scores, nb_scores, elfs):
 	return scores, nb_scores, new_elfs
 
 
-while nb_scores < nb_recipes + extra_scores:
-	scores, nb_scores, elfs = step(scores, nb_scores, elfs)
+#while nb_scores < nb_recipes + extra_scores:
+#	scores, nb_scores, elfs = step(scores, nb_scores, elfs)
 
-print(''.join(list(map(str, scores[nb_recipes:nb_recipes + extra_scores]))))
+#print(''.join(list(map(str, scores[nb_recipes:nb_recipes + extra_scores]))))
+
+for i in range(100):
+	print(i)
+	for j in range(1000000):
+		scores, nb_scores, elfs = step(scores, nb_scores, elfs)
+	string = ''.join(list(map(str, scores)))
+	if nb_recipes in string:
+		print(string.index(nb_recipes))
+		break
+
